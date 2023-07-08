@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asincronia y event loop</title>
+</head>
+<body>
+    <center>
+    <h1>Asincronia y event loop</h1>
+    <p>Antes de explicar como funciona el modelo de javascript <br>
+    es importante entender algunos conceptos: <br><br>
+
+    <table>Procesamiento Single thread y multi thread</table>
+    <table>Operaciones de CPU y Operaciones de I/O</table>
+    <table>Operaciones Concurrentes y Paralelas</table>
+    <table>Ooperaciones Bloqueantes y noBLoqueantes</table>
+    <table>Operacionessincronas y Asincronas</table>
+
+    javascript es un modelo asíncrono y no bloqueante,<br>
+    con un loop de eventos implementado en un solo hilo <br>
+    (single thread) para obtener operaciones de entrada <br>
+    y salida(input/output)
+</p>
+</center>
+    <script>
+        /*Código Síncrono Bloqueante*/
+        (()=>{
+            console.log(`Codigo Síncrono`);
+            console.log(`Inicio`);
+
+            function dos(){
+                console.log(`Dos`);
+            }
+
+            function uno(){
+                console.log(`Uno`);
+                dos();
+                console.log(`Tres`);
+            }
+
+            uno();
+            console.log(`Fin`);
+        })();
+        /*Código Asíncrono No Bloqueante*/
+        (()=>{
+            console.log(`Codigo Asincrono`);
+            console.log(`Inicio`);
+
+            function dos(){
+                setTimeout(function(){
+                    console.log(`Dos`);
+                },1000);
+            }
+
+            function uno(){
+                setTimeout(function(){
+                    console.log(`Uno`);
+                },0);
+                dos();
+                console.log(`Tres`);
+            }
+
+            uno();
+            console.log(`Fin`);
+        })();
+    </script>
+</body>
+</html>

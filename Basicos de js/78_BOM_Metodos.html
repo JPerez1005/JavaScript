@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metodos del BOM(Browser Object Model)</title>
+</head>
+<body>
+    <h3>BOM</h3>
+    <button id="abrir-ventana">Abrir Ventana</button>
+    <button id="cerrar-ventana">Cerrar Ventana</button>
+    <button id="imprimir-ventana">Imprimir Ventana</button>
+
+    <script>
+        alert("Alerta");
+        confirm("this is a confirmation");
+        prompt("This is an info");
+
+        const $btnAbrir=document.getElementById("abrir-ventana"),
+        $btnCerrar=document.getElementById("cerrar-ventana"),
+        $btnImprimir=document.getElementById("imprimir-ventana");
+
+        //Creamos variable solo si queremos cerrar una ventana de forma alterna
+        let ventana;
+        $btnAbrir.addEventListener("click", e=>{
+            ventana=open("https://www.youtube.com", target="_blank");
+        });
+
+        $btnCerrar.addEventListener("click", e=>{
+            ventana.close();
+        });
+
+        $btnImprimir.addEventListener("click", e=>{
+            window.print();//imprimir toda la pag
+        });
+    </script>
+</body>
+</html>

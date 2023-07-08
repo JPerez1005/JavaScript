@@ -1,0 +1,462 @@
+/*************Reset CSS**************/
+:root{
+    --main-font: sans-serif;/*fuente de la letra*/
+    --font-size:16px;/*tamaño de la letra*/
+    --main-color: #1ef7ec;/**color principal*/
+    --second-color: #222;/*color secundario*/
+    --main-modal-color: rgba(30, 247, 200, 0.85);
+    --second-modal-color: rgba(34,34,34,0.85);
+    --container-width: 1200px;/*container con anchura maxima*/
+}
+
+/*Reset HTML*/
+html{
+    box-sizing: border-box;/*tamaño de caja*/
+    font-family: var(--main-font);/*conexión de fuentes*/
+    font-size: var(--font-size);/*conexión de tamaño*/
+    scroll-behavior: smooth;/*es una transición o efecto en el scroll*/
+}
+
+/*Ahora hacer que todos los elementos hereden del Box Sizing*/
+*,
+*:before,
+*:after{
+    box-sizing: inherit;
+}
+
+/*Reseteamos el body*/
+body{
+    margin: 0;
+    overflow-x: hidden;
+    background-color: whitesmoke;
+}
+
+/**/
+img{
+    max-width: 100%;/*Las imagenes tomaran la maxima anchura del contenedor*/
+    height: auto;
+}
+
+/*Terminamos con los reseteos*/
+/*-------------------------------------------------------------------------------------------------------*/
+/*********************************************Menú CSS****************************************************/
+/*styles of labels*/
+.header{
+    position: sticky;
+    top:0;
+    padding: 1rem;
+    background-color: aquamarine;
+    color: var(--second-color);
+    z-index: 997;
+}
+
+.header h1{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section{
+    padding: 2rem;
+    padding-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: var(--container-width);
+    min-height: 100vh;/*Altura minima de cada section*/
+    text-align: center;
+}
+
+.panel{
+    position: fixed;
+    z-index: 998;/*para no perder inactividad con el btn*/
+    top: 0;/*que se adueñe de todo el html desde arriba*/
+    bottom: 0;/*tambien que se adueñe de todo lo de abajo*/
+    left: 0;/*izquierda tambien*/
+    right: 0;/*que se adueñe de toda la derecha tambien el panel*/
+    width: 100%;/*anchura de un 100%*/
+    background-color: var(--second-modal-color);
+    transition: transform .3s ease;/*efecto de aparición*/
+    /* ahora podemos mover el panel hacia arriba */
+    transform: translate(/*x,y*/-100%, 0);
+    overflow-y: auto;/*Con Overflow Agregamos otro Scroll*/
+}
+
+/* si activamos el panel entonces regresará a su estado original */
+.panel.is-active{
+    transform: translate(0,0);
+    scroll-behavior: smooth;
+}
+
+
+.panel-btn{
+    position: fixed;/*posicion de manera fija*/
+    z-index: 999;/*siempre estará por encima de cualquier otro item con numero menor*/
+    bottom: 1vh;/*su pposicion abajo*/
+    right: 1vw;/*su posicion estará en la derecha*/
+    width: 4rem;
+    height: 4rem;
+    /* border-radius: 50%; */
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color:#1ef7ec; */
+    /* background-color: black; */
+}
+
+.menu{
+    width: inherit;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+
+.menu a{
+    padding: 2rem;
+    width: 100%;
+    display: block;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--main-color);
+    transition: all 0.3s ease;
+}
+
+.menu a:hover{
+    font-weight: bold;
+    color: var(--second-color);
+    background-color: var(--main-color);
+}
+
+/****************Eventos Del Teclado*******************/
+
+.stage{
+    display: flex;
+    min-height: 50vh;
+    background-color: #222;
+}
+
+.ball{
+    margin:auto;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: #1ef7ec;
+}
+
+/************Scroll Btn*****************/
+.scroll-top-btn{
+    position: fixed;/*no cambiara de lugar en ningún momento*/
+    z-index: 999;
+    bottom: 1vh;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    font-size: 2rem;/*tamaño del contenido o texto*/
+    font-weight: bold;
+    background-color: aquamarine;
+    color: #222;
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.scroll-top-btn:hover{
+    background-color: #222;
+    color: aquamarine;
+}
+
+.hidden{
+    visibility: hidden;
+    opacity: 0;
+}
+
+/************Dark Theme Btn*****************/
+.dark-theme-btn{
+    position: fixed;/*no cambiara de lugar en ningún momento*/
+    z-index: 999;
+    bottom: 1vh;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    font-size: 2rem;/*tamaño del contenido o texto*/
+    font-weight: bold;
+    background-color: aquamarine;
+    color: #222;
+    /* margin-left: 72rem; */
+    right: 5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.dark-theme-btn:hover{
+    background-color: #222;
+    color: aquamarine;
+}
+
+.dark-mode{
+    background-color: #222;
+    color: #1ef7ec ;
+}
+
+/******************Network Status***************/
+.online,
+.offline{
+    position: sticky;
+    top:0;
+    z-index: 1000;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    background-color: chartreuse;
+    color: aliceblue;
+}
+
+.offline{
+    background-color: rgb(220, 20, 20);
+}
+
+/*********************SearchFilters******************/
+.cards{/*nos permite colocar el metodo reponsive los cards*/
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.card{
+    background-color: var(--second-color);
+    color: var(--main-color);
+    transition: all 0.3s ease-out;
+}
+
+.card img{
+    width: 100%;
+    height: auto;
+}
+
+.card figcaption{/*figcaption es el texto de las imagenes*/
+    padding: 1rem;
+}
+
+.filter{
+    /* display: none; */
+    visibility: hidden;
+    opacity: 0;
+    order: 1;
+}
+
+/**********Responsive Slider************/
+.slider{
+    position:relative;
+    width: 80%;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.slider-slides{
+    position: relative;
+    height: 400px;
+}
+
+.slider-slide{
+    position:absolute;/*todos los items se acumulan en el item padre*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;/*no se vé nada*/
+    visibility: hidden;
+    transition: opacity 1s ease;
+}
+
+.slider-slide img{/*La img se adapta a la altura y es responsive*/
+    height: inherit;/*altura Heredada*/
+    width: inherit;
+    /* object-fit: contain;*//*Ajusta la img dependiendo de la altura */
+    object-fit: cover;/*hace un zoom en la img*/
+    object-position: 50% 0%;/*Se sube la img*/
+}
+
+.slider-slide.active{
+    opacity:1;
+    visibility: visible;
+}
+
+.slider-btns{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    display: flex;/*modo fila*/
+    justify-content: space-between;/*Hace un espacio entre los lados*/
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.slider a{
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: thin solid #000;
+    text-decoration: none;
+    background-color: burlywood;
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+.slider a:hover{
+    color: #222;
+}
+
+/*************Scroll Spy**************/
+@media screen and (min-width: 1024px){
+    body{
+        display:grid;
+        grid-template-columns:80% 20%;
+        grid-template-rows: 4rem auto;
+        grid-template-areas: 
+            "header header"
+            "main   panel";
+    }
+
+    main{
+        grid-area: main;
+    }
+
+    .header{
+        grid-area: header;
+    }
+
+    .panel{
+        grid-area: panel;
+        position:sticky;
+        top:4rem;
+        background-color: var(--second-color);
+        transform: translate(0,0);
+        opacity: 1;
+        visibility: visible;
+        justify-content: flex-start;
+        align-self: start;
+        overflow-y: auto;/*Con Overflow Agregamos otro Scroll*/
+        
+    }
+
+    .panel-btn{
+        display: none;
+        visibility: hidden;
+    }
+
+    .menu{
+        justify-content: start;
+    }
+
+    .menu a{
+        font-size: 1rem;
+        padding: 1.50rem;
+    }
+
+    .menu a:hover,
+    .menu a.active{
+        color:var(--second-color);
+        background-color: var(--main-color);
+    }
+
+    .dark-theme-btn{
+        
+        left: 6rem;
+    }
+
+}
+
+/**************Video Reponsive***************/
+video{
+    width: 90%;
+}
+
+/*************************ContactForm Validations***********************/
+
+.contact-form{
+    --form-ok-color: #376b03;
+    --form-error-color: #6b0505;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.contact-form>*{
+    padding: 0.5rem;
+    margin: 1rem auto;
+    display: block;
+    width: 100%;
+}
+
+.contact-form textarea{/*se usa para que el usuario no juegue con el ajuste del textarea*/
+    resize: none;
+}
+
+.contact-form legend,
+.contact-form-response{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.contact-form input,
+.contact-form textarea{
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+
+.contact-form input[type="submit"]{
+    width:15%;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: cadetblue;
+}
+
+.contact-form *::placeholder{
+    color: #000;
+}
+
+.contact-form [required]:valid{
+    border:  solid var(--form-ok-color);
+}
+
+.contact-form [required]:invalid{
+    border: solid var(--form-error-color);
+}
+
+.contact-form-error{
+    margin-top: -1rem;
+    font-size: 80%;
+    background-color: var(--form-error-color);
+    color: aliceblue;
+    transition: all 800ms ease;
+}
+
+.contact-form-error.is-active{
+    display: block;
+    animation: show-message 1s 1 normal 0s ease-out both;
+}
+
+.contact-form-loader{
+    text-align: center;
+}
+
+.none{
+    display: none;
+}
+
+@keyframes show-message{
+    0%{
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    100%{
+        visibility: visible;
+        opacity: 1;
+    }
+}

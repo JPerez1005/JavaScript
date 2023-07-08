@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maps</title>
+</head>
+<body>
+    <script>
+        let mapa=new Map();//Este es un objeto iterador
+        mapa.set("nombre","Julian");
+        mapa.set("Apellido","Perez");
+        mapa.set("Edad",20);
+
+        console.log(mapa);
+        console.log(mapa.size);
+        console.log(mapa.has("correo"));
+        console.log(mapa.has("nombre"));
+        console.log(mapa.get("nombre"));
+        mapa.set("nombre","Julian Bueno");
+        console.log(mapa.get("nombre"));
+        mapa.delete("apellido");
+        mapa.set(19,"diecinueve");
+        console.log(mapa);
+
+        for(let [key,value] of mapa){/*hacemos la conexion)*/
+            console.log(`Llave: ${key}//propiedad, valor: ${value}`);
+        }
+
+        const mapa2=new Map([
+            [`nombre`,`Julian`],
+            [`edad`,20],
+            [`Animal`,`Perro`],
+            [null,`nulo`]
+            ]);
+
+            console.log(mapa2);
+
+            const llavesMapa2=[...mapa2.keys()];//colocamos las propiedades en un arreglo esto se llama destructuracion
+            const valoresMapa2=[...mapa2.values()];//los valores en un arreglo tambien
+
+            console.log(llavesMapa2);//Propiedades del mapa2
+            console.log(valoresMapa2);
+    </script>
+</body>
+</html>

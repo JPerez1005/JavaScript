@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD API REST AJAX</title>
+</head>
+<body>
+    <h1>CRUD API REST AJAX</h1>
+    <section class="crud">
+        <article><!--El Formulario-->
+            <h2 class="crud-title">Agregar Tripulantes</h2><!-- querySelector -->
+            <form class="crud-form"><!-- querySelector -->
+                <input type="text" name="nombre" placeholder="Nombre del Tripulante" required>
+                <br>
+                <input type="text" name="Genero" placeholder="Genero del Tripulante" required>
+                <br><br>
+                <input type="submit" value="Enviar">
+                <input type="hidden" name="id">
+            </form>
+        </article>
+        <article><!--La tabla-->
+            <h2>Ver Tripulantes</h2>
+            <table class="crud-table"><!-- querySelector -->
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Genero</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </article>
+    </section>
+    <template id="crud-template"><!-- getElementById -->
+        <tr>
+            <td class="name"></td>
+            <td class="gender"></td>
+            <td><button class="edit">Editar</button><button class="delete">Eliminar</button></td>
+        </tr>
+    </template>
+    <script>
+        const d=document;
+        const $table=d.querySelector(".crud-table"),
+        $form=d.querySelector(".crud-form"),
+        $title=d.querySelector(".crud-title"),
+        $template=d.getElementById("crud-template").content,
+        $fragment=d.createDocumentFragment();
+
+        const ajax=(options)=>{//creacion de objetos y  manejo de errores del documento
+            let {url, method, success, error, data}=options;
+            const xhr=new XMLHttpRequest();
+
+            xhr.addEventListener("readystatechange", e=>{
+                if(xhr.readyState!==4)return;//si el estado de la respuesta no esta listo entonces que no se ejecute
+
+                if (xhr.status>=200 && xhr.status<300) {//si funcionó que me lo imprima
+
+                    let json=JSON.parse(xhr.responseText);//convertimos a objeto javascript el formato json
+                    success(json);
+                } else{
+                    let message=xhr.statusText || "Ocurrió un error";
+                    error(`Error ${xhr.status}: ${message}`);
+                }
+            });
+
+            xhr.open(method || "GET", url);
+            xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");//a donde lo enviaremos y en que formato
+            xhr.send(JSON.stringify(data));//tranformamos el objeto data de javascript a json
+        }
+
+        const getAll=()=>{//mostramos los datos en la tabla dinamicamente
+            ajax({
+                method:"GET",//method no estan necesario ya que anteriormente ya instanciamos un valor por default
+                url:"http://localhost:5000/mugiwara",
+                success:(res)=>{//anteriormente en el succes guardamos un json
+                    console.log(res);
+
+                    res.forEach(el => {//por cada elemento de la respuesta
+                        $template.querySelector(".name").textContent=el.nombre;//nos enfocamos en la clase name del template
+                        $template.querySelector(".gender").textContent=el.genero/*los parametros del elemento vienen directamente del json*/;
+                        $template.querySelector(".edit").dataset.id=el.id;
+                        $template.querySelector(".edit").dataset.name=el.nombre;
+                        $template.querySelector(".edit").dataset.gender=el.genero;
+                        $template.querySelector(".delete").dataset.id=el.id;
+
+                        let $clone=d.importNode($template, true);//clonamos el template con true para guadar todo el contenido
+                        $fragment.appendChild($clone);//el nodo lo agregamos al fragmento para no afectar el rendimiento
+                    });
+
+                    $table.querySelector("tbody").appendChild($fragment);//los fragmentos guardados los agregamos en la etiqueta enfocada
+                },
+                error:(err)=>{
+                    console.error(err);
+                    $table.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`);
+                    console.warn("Hubo un problema");
+                    
+                },
+                data:null//como solicitaré todos los datos no es necesario mandarle aguna petición
+            })
+        }
+        d.addEventListener("DOMContentLoaded", getAll);
+
+        d.addEventListener("submit", e=>{//evento del boton enviar
+            if (e.target===$form) {//si la accion submit se originó del formulario entonces...
+                e.preventDefault();
+                if(!e.target.id.value){
+                    //create - POST- creamos o insertamos
+                    ajax({//si no existe el valor del id en el formulario entonces...
+                        url: "http://localhost:5000/mugiwara",
+                        method: "POST",
+                        success:(res)=>location.reload(),//recargamos la pag
+                        error:()=>$form.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`),
+                        data:{
+                            nombre: e.target.nombre.value,
+                            genero: e.target.Genero.value
+                        }
+                    });
+                }else{
+                    //UPDATE - PUT o actualizamos
+                    ajax({//si ya existen estos valores, entonces se actualizan
+                        url:`http://localhost:5000/mugiwara/${e.target.id.value}`,
+                        method: "PUT",
+                        success:(res)=>location.reload(),//recargamos la pag
+                        error:()=>$form.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`),
+                        data:{
+                            nombre: e.target.nombre.value,
+                            genero: e.target.Genero.value
+                        }
+                    });
+                }
+            }
+        });
+
+        d.addEventListener("click", e=>{//Eventos de los bottones eliminar y editar
+            if(e.target.matches(".edit")){//editar
+                $title.textContent="Editar Tripulante";
+                $form.nombre.value=e.target.dataset.name;
+                $form.Genero.value=e.target.dataset.gender;
+                $form.id.value=e.target.dataset.id;
+                
+            }
+
+            if(e.target.matches(".delete")){//eliminar
+                let isDelete=confirm(`¿Estas seguro de eliminar el id ${e.target.dataset.id}?`);
+                //si el usuario confirma el eliminar entonces....
+                if(isDelete){
+                    //Delete - DELETE
+                    ajax({
+                        url:`http://localhost:5000/mugiwara/${e.target.dataset.id}`,
+                        method: "DELETE",
+                        success:(res)=>location.reload(),//recargamos la pag
+                        error:()=>alert(err),
+                        
+                    });
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

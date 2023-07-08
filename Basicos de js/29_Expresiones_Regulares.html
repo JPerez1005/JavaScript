@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expresiones Regulares</title>
+</head>
+<body>
+    <script>
+        let cadena=`Las expresiones regulares son patrones que se utilizan para
+         hacer coincidir combinaciones de caracteres en cadenas. En JavaScript, 
+         las expresiones regulares también son objetos. Estos patrones se utilizan 
+         con los métodos exec() y test() de RegExp, y con match(), matchAll(), 
+         replace(), replaceAll() (en-US), search() y split() métodos de String. 
+         Este capítulo describe las expresiones regulares de JavaScript.`;
+
+         //la palabra expresiones deben de estar entre una y dos veces
+         //es una o dos veces por que lo defini en los corchetes
+         //la letra g me dice que busca todas las palabras expresiones
+         //la letra i me dice que no importa si empieza en minuscula
+         //o mayuscula
+         let expReg2=/expresiones{1,2}/ig;
+         //reproducimos la cadena en la consola
+         console.log(expReg2.test(cadena));
+         //reproducimos en un arreglo con info mas detallada
+         console.log(expReg2.exec(cadena));
+    </script>
+</body>
+</html>

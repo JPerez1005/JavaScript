@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clases y Herencía</title>
+</head>
+<body>
+    <center>
+        <h1>Clases y Herencía</h1>
+        <p>A partir del 2015 cambiaron el estandar en JavaScript y podremos cambiar de objetos</br>
+        con metodos constructores a clases que JavaScript los compila como prototipos es</br>
+        decir ya no necesitaremos de funciones constructoras, se hizo para simplificar codificación</p>
+        <p>Aclarar que esto no hace a JavaScript un lenguaje orientado a objetos basado en clases</br>
+        Sigue siendo un lenguaje orientado a onjetos basado en prototipos</p>
+    </center>
+    <script>
+        class Animal{
+            constructor(nombre,genero){
+                this.nombre=nombre;
+                this.genero=genero;
+            }
+        
+            //Metodos
+            sonar(){
+                console.log(`Hago sonidos`);
+            }
+
+            saludar(){
+                console.log(`mi nombre es ${this.nombre}`);
+            }
+//Aqui no es necesario sacar los metodos de la clase constructora
+        }
+        /*El uso de la herencia tambien lo cambiaron precisamente para simplificar el codigo*/
+        class Perro extends Animal{
+            constructor(nombre,genero,tamanio){
+                super(nombre,genero);
+                this.tamanio=tamanio;
+            }
+            //la sobreescritura tambien funciona aquí
+            //Aqui estamos usando funciones declaradas simplificadas
+            sonar(){
+                console.log(`Hago sonidos de Perro`);
+            }
+
+            ladrar(){
+                console.log(`guau guau`);
+            }
+
+            //el tipo static nos deja invocar una funcion sin necesidad
+            //de asignar un dato a la clase
+            static queEres(){
+                console.log(`
+                En este sentido, la vida es importante porque nos permite crecer,
+                desarrollar vínculos con otros seres vivos, aprender,
+                conocer el mundo y un sinfín de actividades que ya van más allá
+                de las meras funciones biológicas.
+                `);
+            }
+        }
+
+        /*Asignamos Datos en las clases*/
+        let mimi= new Animal(`Mimi`,"Hembra"),
+        scooby= new Perro("Scooby","Macho","Mediano");
+
+        /*Uso de Static con función*/
+        Perro.queEres();
+
+        /*imprimimos en consola*/
+        console.log(mimi);
+        mimi.saludar();
+        mimi.sonar();
+        console.log(scooby);
+        scooby.saludar();
+        scooby.sonar();
+        scooby.ladrar();
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symbols</title>
+</head>
+<body>
+    <script>
+        let id=Symbol(`id`);
+        let id2=Symbol(`id2`);
+
+        console.log(id=id2);
+        console.log(id, id2);
+        console.log(typeof id, typeof id2);
+
+        const NOMBRE = Symbol();
+
+        const persona={
+            [NOMBRE]: "Julian",//Aparecen en privado el nombre de la propiedad
+            edad: 20//esto lo muestra la anterior linea no
+        }
+
+        console.log(persona);
+
+        persona.NOMBRE="Julian Perez Ingeniero"//aqui si aparece el nombre de la propiedad
+        console.log(persona);
+
+        //mas formas de llamar
+        console.log(persona.NOMBRE);//normal
+        console.log(persona[NOMBRE]);//symbolo
+
+        /*Con todo esto tambien podemos crear funciones ocultas*/
+        const SALUDAR=Symbol();
+
+        persona[SALUDAR]=function(){
+            console.log(`Hola`);
+        }
+
+        console.log(persona[SALUDAR]);
+        persona[SALUDAR]();
+
+        for(let propiedad in persona){
+            console.log(propiedad);//Recorremos cada propiedad
+            console.log(persona[propiedad]);//Recorremos cada valor de cada propiedad
+        }
+
+        console.log(Object.getOwnPropertySymbols(persona));//nos muestra la lista de objeto
+        //s de esta funcion en un arreglo
+    </script>
+</body>
+</html>

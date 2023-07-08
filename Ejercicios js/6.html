@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6</title>
+</head>
+<body>
+    <script>
+        /*6) Programa una función para contar el número de veces que se 
+        repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", 
+        "mundo") devolverá 2*/
+
+        let conteo=(cadena="",cont=undefined)=>(!cadena)
+        ?console.warn(`no has digitado el parametro`)
+        :console.info(cont===undefined)
+            ?console.warn(`no has ingresado el parametro de busqueda`)
+            :console.info(cadena.includes(cont))
+
+        conteo("hola julian, buenos dias julian","julian");
+        //esta  función solo me dirá true
+
+        let textoEnCadena=(cadena="",texto="")=>{
+            if(!cadena) return console.warn("no has ingresado una cadena");
+            if(!texto) return console.warn("Todavía no se que palabra buscar");
+
+            let i=0,
+            cont=0;
+
+            while(i!==-1){
+                i=cadena.indexOf(texto,i);
+                if(i!==-1){
+                    i++;
+                    cont++;
+                }
+            }
+
+            /*Otra forma
+            const ej06 = (texto, palabra) => {
+      if (!texto) return console.warn("Se olvidó ingresar un texto")
+      if (!palabra) return console.warn("Se olvidó ingresar la palabra que contar");
+      let total = 0,
+        txt = texto.split(" ");
+      for (let i = 0; i < txt.length; i++) {
+        if (txt[i].toLowerCase() === palabra.toLowerCase()) total++;
+      }
+      console.log(`El total de veces que se repitió ${palabra} es ${total}`);
+    }*/
+
+            return console.info(`La palabra ${texto} se repite ${cont} veces`);
+        }
+
+        textoEnCadena("mundo hola mundo","mundo");
+    </script>
+</body>
+</html>

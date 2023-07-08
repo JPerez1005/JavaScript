@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos con Parametros y Remover Eventos</title>
+</head>
+<body>
+    <button id="evento-multiple">Evento con manejador Múltiple</button>
+    <br><br>
+    <button id="evento-remover">Removiendo eventos con manejadores multiples</button>
+    <script>
+        //FUNCION QUE HARÁ DE LINK CON EL EVENTO MULTIPLE
+        function saludar(nombre="Desconocid@"){
+            alert(`Hola ${nombre}`);
+        }
+        //CREAMOS LA VARIABLE DEL EVENTO
+        const $eventoMultiple=document.getElementById("evento-multiple"),//varias funciones en un mismo evento
+        $eventoRemover=document.getElementById("evento-remover");
+
+        //INSERTAMOS LOS EVENTOS QUE QUERAMOS
+        $eventoMultiple.addEventListener("click", ()=>{saludar();saludar("julian")});//aquí no afectan parentesis
+        //este es un tipo de engaño hacia el doom ya que este no acepta funciones con parametros
+
+        const removerDobleClick=(e)=>{
+            alert(`Removiendo el Evento de tipo ${e.type}`);
+            console.log(e);
+            $eventoRemover.removeEventListener("dblclick",removerDobleClick);//removemos el evento
+            $eventoRemover.disabled=true;//Desabilitamos la etiqueta html
+        }
+        $eventoRemover.addEventListener("dblclick", removerDobleClick);
+
+    </script>
+</body>
+</html>

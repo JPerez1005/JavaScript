@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objeto Console</title>
+</head>
+<body>
+    <center>
+        <h1></h1>
+    </center>
+    <script>
+        console.log(console);
+        console.error("hubo un error");
+        console.warn("soy un aviso");
+        console.info("Atencion por favor");
+        console.log(document);//muestra todo el cuerpo html
+        console.dir(document);//Mas detallado que lo anterior
+        //Podemos hacer gurpo
+        console.groupCollapsed("Tipos de animales gatunos");//tambien podremos usar el Group normal
+        console.log(`Gato`);
+        console.log(`Tigre`);
+        console.log(`Puma`);
+        console.log(`Leopardo`);
+        console.groupEnd();
+
+        console.log(window);
+        console.table(Object.entries(window));
+        console.table(Object.entries(console));//Creamos tabla de la consola
+        
+        /*Otro uso de las tablas en consola*/
+        let numeros=[1,2,3,4],
+        vocales=["a","e","i","o","u"];
+
+        console.table(vocales);
+        console.table(numeros);
+
+        const perro={
+            nombre: "Boni",
+            raza: "Boxer",
+            color: "Cafe"
+        }
+
+        console.table(perro);
+
+        //Veamos el tiempo de codigo
+        console.time(`Cuanto tiempo tarda mi codigo:`);
+        let arreglo=Array(20);
+        for(let i=0;i<arreglo.length;i++){
+            arreglo[i]=i;
+        }
+        console.timeEnd(`Cuanto tiempo tarda mi codigo:`);
+
+        console.log(arreglo);
+
+        console.count("veces:");//cuenta las veces que se ejecuto cierta función
+        //se puede colocar dentro de os ciclos tmbn
+        console.clear();//limpia la consola
+
+        let x=3,y=2,pruebaXY="Se espera que x siempre sea menor que y";
+
+        console.assert(x<y, {x,y,pruebaXY});//Es como un if 
+    </script>
+</body>
+</html>

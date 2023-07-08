@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4</title>
+</head>
+<body>
+    <script>
+        //4) Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo')
+        // devolverá Hola Mundo Hola Mundo Hola Mundo.
+
+        let función=(cadena=`Hola mundo `)=>console.log(` ${cadena} `.repeat(4));
+        función(`Julian`);
+
+        const otraForma=(texto="",veces=undefined)=>{
+            if(!texto)return console.warn(`No ingresaste un texto`);
+
+            if(veces===undefined)return console.warn(`no se cuantas veces se repetira el texto`);
+
+            if(Math.sign(veces)===-1)return console.error(`por favor no digite numeros negativos`);
+
+            for(let i=1; i<=veces;i++)console.info(`${texto},${i}`);
+            
+        }
+
+
+    </script>
+</body>
+</html>

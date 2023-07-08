@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterables e Iteradores</title>
+</head>
+<body>
+    <p>lorem</p>
+    <p>lorem</p>
+    <p>lorem</p>
+    <script>
+        //document.querySelectorAll("p")
+
+        // const iterable=new Set([1,2,3,4,5]);
+        const iterable="Hola Mundo";
+
+        //Accedemos al iterador del iterador
+        const iterador=iterable[Symbol.iterator]();
+        const iterador2=iterable[Symbol.iterator]();
+
+        console.log(iterable);
+        console.log(iterador);
+
+        //cons el siguiente codigo rrecorremos elementos iterables
+        // console.log(iterador.next());
+        // console.log(iterador.next());
+        // console.log(iterador.next());
+        // console.log(iterador.next());
+
+        let next=iterador.next();
+
+        while(!next.done){//mientras next.done sea false
+            console.log(next.value);
+            next=iterador.next();
+        }
+
+    </script>
+</body>
+</html>

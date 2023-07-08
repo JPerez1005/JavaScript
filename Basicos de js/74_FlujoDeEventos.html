@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flujo de eventos</title>
+    <style>
+        .eventos-flujos div{
+            padding: 5rem;
+            font-size: 2rem;
+            text-align: center;
+            
+        }
+
+        /*a cada uno de los div les agregamos un color diferente*/
+        .uno{
+            background-color: aqua;
+        }
+        .dos{
+            background-color: blue;
+        }
+        .tres{
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <section class="eventos-flujos">
+        <div class="uno">1
+            <div class="dos">2
+                <div class="tres">3
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const $divsEventos=document.querySelectorAll(".eventos-flujos div");//seleccionamos todas las div
+        //que están dentro del flujo de eventos
+
+        // function flujoEventos(e){
+        //     console.log(`Hola`);
+        // }//el funcionamiento es simple, si un div esta dentro de algun div tambien llamará a consola el div padre
+
+        function flujoEventos(e){
+            console.log(`Hola te saluda ${this.className},el click lo originó ${e.target.className}`);
+        }//este es el perfecto ejmplo del como funciona
+        console.log($divsEventos);
+
+        $divsEventos.forEach((div)=>{
+            // div.addEventListener("click", flujoEventos);//aquí podemos invertir el funcionamiento
+            // fase de burbuja
+            // div.addEventListener("click", flujoEventos,false);
+            // fase de captura
+            // div.addEventListener("click", flujoEventos,true);
+            // tambien podemos activar y desactivar la fase de burbuja y captura
+            div.addEventListener("click",flujoEventos, {
+                capture: true,//con cambiar a false activamos la fase burbuja
+                once:true,//significa que se ejecutará solo una véz
+            });
+        })
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generators</title>
+</head>
+<body>
+    <script>
+        function* iterable(){
+            yield "hola";
+            console.log("Hola Consola");
+            yield "hola2";
+            console.log("Seguimos con más instrucciones de nuestro código");
+            yield "hola3";
+            yield "hola4";
+        }
+
+        let iterador=iterable();
+
+        /*console.log(iterador.next());*/
+
+        for(let y of iterador){
+            console.log(y);
+        }
+
+        //ahora guardaremos en un arreglo el resultao de una funcion generadora
+        const arr=[...iterable()];
+        console.log(arr);
+
+        function cuadrado(valor){
+            setTimeout(() => {
+                return console.log({valor, resultado: valor*valor})
+            }, 1000);
+        }
+
+        function* generador(){
+            console.log("Inicia Generador");
+            
+                yield cuadrado(0);
+                yield cuadrado(1);
+                yield cuadrado(2);
+                yield cuadrado(4);
+            
+            console.log("Fin Generador");
+        }
+
+        let gen=generador();
+
+        for(let y of gen){
+            console.log(y);
+        }
+    </script>
+</body>
+</html>

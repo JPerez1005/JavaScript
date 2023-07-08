@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2</title>
+</head>
+<body>
+    <script>
+        /*2) Programa una función que te devuelva el texto recortado según el número de caracteres indicados,
+         pe. miFuncion("Hola Mundo")*/
+         
+        let recortarText=(cadena="",longitud=undefined)=>
+        (!cadena)
+        ?console.warn(`no ingresaste texto`)
+        :console.info(cadena.slice(0,longitud));
+
+        let otraForma=(cadena="",longitud=undefined)=>
+        (!cadena)
+        ?console.warn(`no ingresaste texto`)
+        :(longitud===undefined)
+         ?console.warn(`no ingresaste una longitud`)
+         :console.info(cadena.slice(0,longitud));
+
+        
+        recortarText(`Hola Mundo`,4);
+    </script>
+</body>
+</html>

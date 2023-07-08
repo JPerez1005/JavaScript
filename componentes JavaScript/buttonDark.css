@@ -1,0 +1,30 @@
+.dark-theme-btn{
+    position: fixed;/*no cambiara de lugar en ningún momento*/
+    z-index: 999;
+    bottom: 1vh;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    font-size: 2rem;/*tamaño del contenido o texto*/
+    font-weight: bold;
+    background-color: rgb(235, 235, 235);
+    color: #222;
+    /* margin-left: 72rem; */
+    right: 5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.dark-theme-btn:hover{
+    background-color: #222;
+    color: aquamarine;
+}
+
+.dark-mode{
+    background-color: #222;
+    color: #1ef7ec ;
+}
+
+/* .dark-theme-btn:focus ~ *{
+    background-color: #222;
+} */

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templates HTML</title>
+    <style>
+        :root{
+            --yellow-color: #f7df1e;
+            --dark-color: rgb(43, 40, 40);
+        }
+
+        .cards{
+            border: thin solid var(--dark-color);
+            color: 1rem;
+        }
+
+        .card{
+            display: inline-block;
+            background-color: var(--yellow-color);
+            color: var(--dark-color);
+        }
+
+        .card figcaption{
+            padding: 1rem;
+        }
+
+        .rotate-45{
+            transform: rotate(45deg);
+        }
+
+        .rotate-135{
+            transform: rotate(135deg);
+        }
+
+        .opacity-80{
+            opacity: .8;
+        }
+
+        .sepia{
+            filter: sepia(1);
+        }
+    </style>
+</head>
+<body>
+    
+    <p id="que-es">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+        Ab eveniet molestias facere rerum nemo recusandae architecto 
+        mollitia est, odio cum nobis veritatis voluptate earum, 
+        quidem quae beatae quisquam ullam repellendus.
+    </p>
+
+    <nav id="menu">
+        <ul>
+            <li><a href="#">seccion 1</a></li>
+            <li><a href="#">seccion 2</a></li>
+            <li><a href="#">seccion 3</a></li>
+            <li><a href="#">seccion 4</a></li>
+            <li><a href="#">seccion 5</a></li>
+        </ul>
+        </nav>
+        <input type="text" name="nombre" placeholder="nombre">
+        <a class="link-dom" href="DOM.html" style="background-color: black; color: aqua;">Dom</a>
+        <section class="cards">
+            <figure class="card">
+                <img src="https://placeimg.com/200/200/tech" alt="Tech">
+                <figcaption>Tech</figcaption>
+            </figure>
+            <figure class="card">
+                <img src="https://placeimg.com/200/200/animals" alt="animals">
+                <figcaption>animals</figcaption>
+            </figure>
+            <figure class="card">
+                <img src="https://placeimg.com/200/200/People" alt="People">
+                <figcaption>People</figcaption>
+            </figure>
+            <figure class="card">
+                <img src="https://placeimg.com/200/200/Arch" alt="Arch">
+                <figcaption>Arch</figcaption>
+            </figure>
+            <figure class="card">
+                <img src="https://placeimg.com/200/200/Nature" alt="Nature">
+                <figcaption>Nature</figcaption>
+            </figure>
+        </section>
+        <template id="template-card">
+            <figure class="card">
+                <img>
+                <figcaption>
+
+                </figcaption>
+            </figure>
+        </template>
+    <script>
+        //apuntamos al card y al template
+        const $cards=document.querySelector(".cards"),//asi se apunta con clase
+        $template=document.getElementById("template-card").content,//asi se apunta con id, pero solo al contenido
+        //creamos un fragmento para almacenar dinamicamente la informacion
+        $fragment=document.createDocumentFragment(),
+        //recordar que el uso de variables del DOM es con el simbolo $
+        //creamos un arreglo de cards
+        cardContent=[
+            {
+                title: "Tecnología",
+                img: "https://placeimg.com/200/200/tech",
+            },
+            {
+                title: "Animales",
+                img: "https://placeimg.com/200/200/animals"
+            },
+            //esto es solo un ejemplo
+            //como pueden ver estan siendo creadas dinamicamente
+            //sin siquiera meter el figcaption etc
+            //y en el DOM
+        ];
+
+        //Ahora sí colocamos las caracteristicas anteriores en la estructura del template
+        //por cada elemento....
+        cardContent.forEach(el=>{
+            //en la imagen le establecemos el atributo source y ahí colocamos el elemento img del arreglo 
+            $template.querySelector("img").setAttribute("src",el.img);
+            $template.querySelector("img").setAttribute("alt",el.title);
+            $template.querySelector("figcaption").textContent=el.title;
+
+            //creamos una variable que clone los nodos, los importe y el boolean de true para copiar
+            //los $template del arreglo por eso puse $template al lado
+            let $clone=document.importNode($template, true);
+            //appendChild agrega los clones al final del fragmento y ya esta listo para usarse
+            $fragment.appendChild($clone);
+        });
+
+        //y los fragmentos finalmente los colocamos en las cards de uno en uno
+        $cards.appendChild($fragment);
+
+        //este fue el aprendizaje del uso de la etiqueta template
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objeto Date</title>
+</head>
+<body>
+    <script>
+        console.log(Date());
+        let fecha=new Date();
+        console.log(fecha);
+        //Día del mes
+        console.log(fecha.getDate());
+        //Día de la Semana D L M MI J V S -> 0 1 2 3 4 5 6
+        console.log(fecha.getDay());
+        //mes ene feb mar abr may jun jul ago sep oct nov dic
+        //0 1 2 3 4 5 6 7 8 9 10 11 12
+        console.log(fecha.getMonth());
+        //obtenemos el año en el que estamos
+        console.log(fecha.getFullYear());
+        //hora en la que estamos
+        console.log(fecha.getHours());
+        //minutos de la hora
+        console.log(fecha.getMinutes());
+        //segundos  de los minutos 
+        console.log(fecha.getSeconds());
+        //obtener lo milisegundos
+        console.log(fecha.getMilliseconds());
+        //muestra la fecha Basica
+        console.log(fecha.toDateString());
+        //fecha local y hora local
+        console.log(fecha.toLocaleString());
+        //fecha local
+        console.log(fecha.toLocaleDateString());
+        //la hora local
+        console.log(fecha.toLocaleTimeString());
+        console.clear();
+        //My cumpleaños
+        let miCumpleaños=new Date(2001, 7,7);
+        console.log(miCumpleaños);
+
+
+
+    </script>
+</body>
+</html>

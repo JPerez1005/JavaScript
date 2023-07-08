@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delegación de eventos</title>
+    <style>
+        .eventos-flujos div{
+            padding: 5rem;
+            font-size: 2rem;
+            text-align: center;
+            
+        }
+
+        /*a cada uno de los div les agregamos un color diferente*/
+        .uno{
+            background-color: aqua;
+        }
+        .dos{
+            background-color: blue;
+        }
+        .tres{
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <section class="eventos-flujos">
+        <div class="uno">1
+            <div class="dos">2
+                <div class="tres">3
+                    <a href="https://www.youtube.com" target="_blank" rel="noopener">elyutu</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function flujoEventos(e){
+            console.log(`Hola te saluda ${this.className},el click lo originó ${e.target.className}`);
+            // e.stopPropagation();//con esto paramos la propagacion originada de los div's
+            // Aquí ya no es necesario el stop propagation ya que lo hace sin necesidad
+        }//este es el perfecto ejemplo del como funciona
+
+        document.addEventListener("click",(e)=>{
+            console.log("Click en", e.target);//estamos mostrando en consola que parte del documento dimos un click
+
+            if (e.target.matches(".eventos-flujos div")) {
+                flujoEventos(e);//conecxion con el evento
+            }
+            if(e.target.matches(".eventos-flujos a")){
+            alert("Hola mi name is?");
+            e.preventDefault();//previene eventos por defecto, en este caso es href que redirreciona a yutu
+        }
+        });
+
+        //esta es la forma mas optima de trabajar con eventos en javaScript
+    </script>
+</body>
+</html>

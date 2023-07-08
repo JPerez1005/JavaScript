@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herencía Prototípica</title>
+</head>
+<body>
+    <center>
+        <h1>Herencía Prototípica</h1>
+    </center>
+    <script>
+        //función Constructora
+        function Animal(nombre,genero){
+            this.nombre=nombre;
+            this.genero=genero;
+        }
+        //Metodo conectado con el objeto Animal
+        Animal.prototype.sonar2=function(){
+            console.log(`Hola me llamo ${this.nombre}`);
+        }
+
+        //Herecía Prototípica
+        function Perro(nombre,genero,tamanio){
+            this.super=Animal;//invocamos -Animal
+            this.super(nombre,genero);
+            this.tamanio=tamanio;
+        }
+        //Perro es una instacia de Animal
+        //Perro está heredando de Animal
+        Perro.prototype=new Animal();
+        //al colocar constructor tendriamos las caracteristicas del padre
+        Perro.prototype.constructor=Perro;
+        //Sobreescritura de metodos entre padre e hijo
+        Perro.prototype.sonar2 = function(){
+            console.log(`Soy un Perro que habla me llamo ${this.nombre}`);
+        }
+        //Agregamos otro metodo al objeto Perro
+        Perro.prototype.ladrar=function(){
+            console.log(`Wooww`);
+        }
+
+        //aquí agregamos un dato a la función
+        let Snoopy=new Perro("Snoopy",`Macho`,`Mediano`);//como podemos observar es tipo perro
+        //pero es de la clase animal, si fuera otro animal, no usariamos perro
+        //usariamos animal como general
+
+        console.log(Snoopy);
+        Snoopy.ladrar();
+        Snoopy.sonar2();
+
+
+    </script>
+</body>
+</html>

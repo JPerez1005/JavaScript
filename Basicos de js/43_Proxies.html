@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxies</title>
+</head>
+<body>
+    <script>
+        const persona={//creamos las propiedades
+            nombre:"",
+            apellido:"",
+            edad: 0
+        }
+
+        const manejador={//podría decirse que aquí se hacen las validaciones
+            set(obj/*En nuestro caso es persona*/, prop/*nombre,apellido etc*/, valor/*valor de las propiedades*/){
+                //si agregamos otra propiedad que no este creada en persona
+                //podemos decirle al usuario que esa variable no ah sido creada
+                //en el objeto persona
+                if(Object.keys(obj).indexOf(prop)===-1){
+                    return console.error(`La propiedad ${prop} no existe en el objeto persona`);
+                }
+
+                //Validación de Registros por el usuario solo con letras 
+                //y espacios en blanco en las propiedades que lo necesiten ejemplo:
+                if((prop==="nombre" || prop ==="apellido")&&
+                !(/^[A-Za-zÑñÁáÉéÍíÓóÚú/s]+$/g.test(valor))
+                ){
+                    return console.error(`La propiedad ${prop} solo acepta letras y espacios en blanco`);
+                }
+                obj[prop]=valor;
+            }
+        }
+
+        const Julian=new Proxy(persona,manejador);//asignación de propiedades y conexión entre Objetos
+//Agregamos valores
+Julian.nombre="Julian";
+Julian.apellido="Perez";
+Julian.edad=35;
+// Julian.Twitter="@JDPerez"//esta variable no está creda en persona me saltara error en la linea 22
+//si no quiero un error en la linea 22 podemos comentar esa linea
+        console.log(Julian);
+    </script>
+</body>
+</html>

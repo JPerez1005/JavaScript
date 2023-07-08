@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arreglos</title>
+</head>
+<body>
+    <h1>Arreglos</h1>
+    <script>
+
+        let a=[];
+        let b=[1, true, `Hola`, [`A`,`B`,`C`]];
+
+        console.log(a);
+        console.log(b);
+        console.log(b.length);//muestra la acantidad de elementos en un arreglo
+        console.log(b[2]);//imprime directamente el valor de la posicion 2 en el arreglo
+        console.log(b[0]);
+        console.log(b[3]);//esta posicion nos muestra otro arreglo dentro del arreglo b
+        console.log(b[3][0]);//Dentro del arreglo b esta el arreglo 3 y en este estamos buscando
+        //el valor de la posición 0, y así sucesivamente si por dentro hubieran mas array's
+
+        //Otros Ejemplos
+        let c=Array.of("x","z","y",9,8,7);
+        let d=Array(100).fill("insuperable");//este metodo de array llena 100 espacios definidas 
+        // con la palabra insuperable
+        d.push("luffy el 5to yonkou");//inserta otro valor en el arreglo d
+        d.pop();//elimina el ultimo valor del arreglo d
+
+        //Ejemplo de Array con for
+        c.forEach(function(el, index)//el indica el valor e index indica la posición
+        {
+            console.log(`<li id=${index}>${el}<li>`);//coloca en cada linea diferente los valores del array c
+        }
+        )
+
+
+    </script>
+</body>
+</html>

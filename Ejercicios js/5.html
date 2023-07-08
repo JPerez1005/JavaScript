@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5</title>
+</head>
+<body>
+    <script>
+        /*5) Programa una función que invierta las palabras de una cadena de texto,
+        pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".*/
+
+        let invertido=(cadena="")=>
+        (!cadena)
+        ?console.warn(`no has ingresado una cadena de texto`)
+        :console.info(cadena.split("").reverse().join(""));//spli es el separador
+        //reverse invierte
+        //join une el arreglo a cadena
+        invertido("hola mundo");
+    </script>
+</body>
+</html>

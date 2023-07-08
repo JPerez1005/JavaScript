@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructuras</title>
+</head>
+<body>
+    <center>
+        <h1>Condicionales</h1>
+
+    </center>
+    <script>
+
+        let edad = 18;
+
+        if (edad >=18) {
+            console.log(`Eres Mayor de Edad`);
+        } else {
+            console.log(`Eres menor de edad`);
+        }
+
+        let hora = 6;
+        if ( hora<6) {
+            console.log("Dejame Dormir");
+        } else if (hora>=6 && hora<12) {
+            console.log("Buenos días :)");
+        } else if (hora>=12 && hora<19) {
+            console.log("Buenas Tardes");
+        } else {
+            console.log("Buenas Noches");
+        } 
+
+        //forma nueva
+        let edad2=(edad>=18)?`Eres mayor de Edad`:`Eres menor de Edad`;
+
+        /*Swich - case*/
+        let dia=2;
+        switch (dia) {
+            case 1:
+                console.log(`Domingo`)
+                break;
+            case 2:
+                console.log(`Lunes`)
+                break;
+            case 3:
+                console.log(`Martes`)
+                break;
+            case 4:
+                console.log(`Miercoles`)
+                break;
+            case 5:
+                console.log(`Jueves`)
+                break;
+            case 6:
+                console.log(`Viernes`)
+                break;
+            default:
+                console.log(`Ese día no existe`)
+                break;
+        }
+    </script>
+</body>
+</html>

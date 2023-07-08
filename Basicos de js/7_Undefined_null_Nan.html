@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undefined_Null_NaN</title>
+</head>
+<body>
+    <br>
+    <h2>Undefined</h2>
+    <p>cuando no definimos una variable, es decir si creamos una varible y no le colocamos un valor
+        es por que está indefinida.
+    </p>
+    <br>
+    <h2>Null</h2>
+    <p>Así como con indefinido, la palabra reservada null se coloca explicitamente para decir que
+        no definiremos esta variable por que la dejaremos vacía, de modo intencinalmente por el 
+        programador.
+    </p>
+    <br>
+    <h2>Nan</h2>
+    <p>Not is an number, no es un numero, es precisamente para decirle al programador o al usuario
+        que la operacion que se esta intentando hacer no es logica o alguna de las variable falla
+        debido a un error de asignación de variables.
+    </p>
+    <script>
+        let indefinida;//no está definida
+        let nulo= null//definida null intencionalmente
+        let noEsUnNumero="hola"*3.7;//no se puede multiplicar un string con un float
+        //no es un numero
+
+        console.log(indefinida, nulo, noEsUnNumero);
+    </script>
+</body>
+</html>

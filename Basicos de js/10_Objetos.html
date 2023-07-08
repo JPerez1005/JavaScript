@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objetos</title>
+</head>
+<body>
+    
+    <center>
+        <h1>Objetos</h1>
+        <p>Todo en el lenguaje de JavaScript son objetos, incluso</p>
+        <p>hay bases de datos basadas en objetos para JavaScript</p>
+        <br><h2>Recordar</h2>
+        <p>Dentro de un objeto a las variables se les llama atributos</p>
+        <p>o propiedades, y a las funciones se les llaman metodos</p>
+    </center>
+    
+    <script>
+        let myid={//que se puede colocar en un objeto?
+            nombre:`Julian`,
+            apellido: `Perez`,
+            edad: 35,
+            pasatiempos: [`microfutbol`,`Professor`,`estudiar`,`aprender`],
+            soltero: true,
+            contacto:{
+                telefono: `3158163844`,
+                twitter: "@DPerez",
+                email: "JDPB@gmal.com"
+            },
+            saludar: function(){
+                console.log(`Hola :) ${this.nombre}`);
+            }
+        }
+
+        console.log(myid);//aqui consultamos toda la informacion
+        console.log(myid["nombre"]);//Aquí especificamos que informacion quiero ver exactamente
+        console.log(myid.apellido);//lo mismo que la anterior linea
+        console.log(myid.pasatiempos[1]);
+        console.log(myid.contacto.email);
+        myid.saludar();//y asi representamos una funcion o metodo dentro de un objeto
+
+        console.log(Object.keys(myid));//en lista todas las propiedades de mi objeto myid
+        console.log(myid.hasOwnProperty("nombre"));//esta inea me indica si existe aguna propiedad
+        //llamada nombre en el objeto myid
+    </script>
+</body>
+</html>

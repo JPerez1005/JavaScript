@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizadores</title>
+</head>
+<body>
+    <script>
+        setTimeout(()=>{
+            console.log(`Ejecutando un setTimeout,
+            esto se ejecuta una sóla vez`);
+        },3000//son los segundos en los que se ejecuta
+        );
+
+        setInterval(()=>{
+            console.info(`se ejecuta un setInterval, esto se
+            ejecuta indefinidamente cada cierto
+            intervalo de tiempo`);
+        },1000//tiempo de intervalo de ejecución
+        );
+
+        let intervalos=setInterval(()=>{
+            console.info(new Date().toLocaleTimeString());//solo muestra el reloj
+        },1000);
+
+        clearInterval(intervalos);//cancela el setinterval de variable de intervalos
+        /*Tambien se pueen cancelar los set timeout*/
+
+
+    </script>
+</body>
+</html>

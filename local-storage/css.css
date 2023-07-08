@@ -1,0 +1,60 @@
+/*************Reset CSS**************/
+:root{
+    --main-font: sans-serif;/*fuente de la letra*/
+    --font-size:16px;/*tamaño de la letra*/
+    --main-color: #1ef7ec;/**color principal*/
+    --second-color: #222;/*color secundario*/
+    --main-modal-color: rgba(30, 247, 200, 0.85);
+    --second-modal-color: rgba(34,34,34,0.85);
+    --container-width: 1200px;/*container con anchura maxima*/
+}
+
+/*Reset HTML*/
+html{
+    box-sizing: border-box;/*tamaño de caja*/
+    font-family: var(--main-font);/*conexión de fuentes*/
+    font-size: var(--font-size);/*conexión de tamaño*/
+    scroll-behavior: smooth;/*es una transición o efecto en el scroll*/
+}
+
+/*Ahora hacer que todos los elementos hereden del Box Sizing*/
+*,
+*:before,
+*:after{
+    box-sizing: inherit;
+}
+
+/*Reseteamos el body*/
+body{
+    margin: 0;
+    overflow-x: hidden;
+    background-color: whitesmoke;
+}
+
+/************Dark Theme Btn*****************/
+.dark-theme-btn{
+    position: fixed;/*no cambiara de lugar en ningún momento*/
+    z-index: 999;
+    bottom: 1vh;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    font-size: 2rem;/*tamaño del contenido o texto*/
+    font-weight: bold;
+    background-color: aquamarine;
+    color: #222;
+    /* margin-left: 72rem; */
+    right: 5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.dark-theme-btn:hover{
+    background-color: #222;
+    color: aquamarine;
+}
+
+.dark-mode{
+    background-color: #222;
+    color: #1ef7ec ;
+}

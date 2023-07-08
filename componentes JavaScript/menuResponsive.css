@@ -1,0 +1,72 @@
+.section{
+    padding: 2rem;
+    padding-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: var(--container-width);
+    min-height: 100vh;/*Altura minima de cada section*/
+    text-align: center;
+}
+
+.panel{
+    position: fixed;
+    z-index: 998;/*para no perder inactividad con el btn*/
+    top: 0;/*que se adueñe de todo el html desde arriba*/
+    bottom: 0;/*tambien que se adueñe de todo lo de abajo*/
+    left: 0;/*izquierda tambien*/
+    right: 0;/*que se adueñe de toda la derecha tambien el panel*/
+    width: 100%;/*anchura de un 100%*/
+    background-color: var(--second-modal-color);
+    transition: transform .3s ease;/*efecto de aparición*/
+    /* ahora podemos mover el panel hacia arriba */
+    transform: translate(/*x,y*/-100%, 0);
+    overflow-y: auto;/*Con Overflow Agregamos otro Scroll*/
+}
+
+.panel.is-active{
+    transform: translate(0,0);
+    scroll-behavior: smooth;
+}
+
+.panel-btn{
+    position: fixed;/*posicion de manera fija*/
+    z-index: 999;/*siempre estará por encima de cualquier otro item con numero menor*/
+    bottom: 1vh;/*su pposicion abajo*/
+    right: 1vw;/*su posicion estará en la derecha*/
+    width: 4rem;
+    height: 4rem;
+    /* border-radius: 50%; */
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color:#1ef7ec; */
+    /* background-color: black; */
+}
+
+.menu{
+    width: inherit;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+
+.menu a{
+    padding: 2rem;
+    width: 100%;
+    display: block;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--main-color);
+    transition: all 0.3s ease;
+}
+
+.menu a:hover{
+    font-weight: bold;
+    color: var(--second-color);
+    background-color: var(--main-color);
+}

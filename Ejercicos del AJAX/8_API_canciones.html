@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de canciones</title>
+    <style>
+        *{
+            background-color: navajowhite;
+        }
+
+        html{
+            /* text-align: center; */
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        img{
+            max-width: 100%;
+            height: auto;
+        }
+
+        h1,
+        h2{
+            font-family: Old English Text MT;
+        }
+
+        main{
+            display: flex;
+            flex-direction: column-reverse;
+            
+        }
+
+        .loader{
+            display: none;
+            margin: auto;
+        }
+
+        @media screen and(min-width:800px) {
+            main{
+                flex-direction: row;
+            }
+
+            main>*{
+                padding: 1rem;
+                flex-basis: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Buscador de Canciones</h1>
+    <form id="song-search">
+        <input type="text" name="artist" placeholder="Nombre del Intérprete" required>
+        <br>
+        <input type="text" name="song" placeholder="Nombre de la Canción" required>
+        <br>
+        <input type="submit">
+    </form>
+    <img class="loader" src="../Dom Ejercicios/Assets/ball-triangle.svg" alt="Cargando..">
+    <aside class="error"></aside>
+    <main>
+        <article class="artist"></article>
+        <article class="song"></article>
+    </main>
+    <script>
+        const d=document,
+        $form=d.getElementById("song-search"),
+        $loader=d.querySelector(".loader"),
+        $error=d.querySelector(".error"),
+        $main=d.querySelector("main"),
+        $artist=d.querySelector(".artist"),
+        $song=d.querySelector(".song");
+
+        $form.addEventListener("click",async e=>{
+            e.preventDefault();
+            try {
+                $loader.style.display="block";
+
+                let artist=e.target.artist.value.toLowerCase(),
+                song=e.target.song.value.toLowerCase(),
+                $artistTemplate="",
+                $songTemplate="",
+                artistAPI=`https://theaudiodb.com/api/v1/json/2/search.php?s=${artist}`,
+                songAPI=`https://api.lyrics.ovh/v1/${artist}/${song}`,
+                artistFetch=fetch(artistAPI),
+                songFetch=fetch(songAPI),
+                [artistRes, songRes]=await Promise.all([artistFetch, songFetch]),
+                artistData=await artistRes.json(),
+                songData=await songRes.json();
+
+                console.log(artistRes, songRes);
+                console.log(artistData, songData);
+            } catch (err) {
+                console.log(err);
+                let message=err.statusText || "Ocurrió un error";
+                $error.innerHTML=`<p>Error ${err.status}: ${message}</p>`;
+                $loader.style.display="none";
+            }
+        })
+    </script>
+</body>
+</html>

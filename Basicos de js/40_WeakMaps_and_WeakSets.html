@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeakMaps and WeakSets</title>
+</head>
+<body>
+    <center>
+        <p></p>
+    </center>
+    <script>
+        const ws=new WeakSet();
+
+        let valor1={"Valor 1": 1};
+        let valor2={"valor 2": 2};
+
+        ws.add(valor1);
+        ws.add(valor2);
+
+        console.log(ws);
+
+        console.log(ws.has(valor1));//busca
+        console.log(ws.has(valor3));
+
+        ws.delete(valor2);//elimina
+        console.log(ws);
+
+        ws.add(valor2);
+        ws.add(valor3);
+        console.log(ws);
+
+        // setInterval(()=>console.log(ws),1000);//imprimimos la consola en cada segundo
+
+        // //al nulificar las variables el weakseat se convierte en un objeto sin nada
+        // setTimeout(() => {
+        //     valor1=null;
+        //     valor2=null;
+        //     valor3=null;
+        // }, 5000);//en cinco segundos se ejecuta
+
+        console.clear();
+
+        const wm=new WeakMap();
+        let llave1={};
+        let llave2={};
+        let llave3={};
+
+        wm.set(llave1, 1);
+        wm.set(llave2, 2);
+        console.log(wm);
+
+        console.log(wm.has(llave1));
+        console.log(wm.has(llave3));
+
+        console.log(wm.get(llave1));
+        console.log(wm.get(llave2));
+        console.log(wm.get(llave3));
+
+        wm.delete(llave2);
+        console.log(wm);
+
+        wm.set(llave2, 2);
+        wm.set(llave3, 3);
+        console.log(wm);
+
+        setInterval(() =>console.log(wm0), 1000);
+
+        //esto nos ayuda a mejorar el rendimiento
+        setTimeout(() => {
+            llave1=null;
+            llave2=null;
+            llave3=null;
+        }, 5000);
+    </script>
+</body>
+</html>

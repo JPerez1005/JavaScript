@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destrcuturación</title>
+</head>
+<body>
+    <center>
+        <h1>Destructuración</h1>
+    </center>
+    <script>
+        let numeros=[1,2,3,4];
+        /*Sin destructuración */
+        let uno= numeros[0];
+        let dos= numeros[1];
+        let tres= numeros[2];
+        let cuatro= numeros[3];
+
+        console.log(uno,dos,tres,cuatro);
+
+        /*Con Destructuración*/
+        /*Tener en cuenta que aquí no hay problema si defino los valores en ingles*/
+        const[one,two,three,four]=numeros;
+        console.log(one,two,three,four);
+
+        /*las propiedades y las definiciones de valores en objetos deben ser las mismas
+        Para que así pueda funcionar la restructuración*/
+        let persona={
+            nombre: "Julian",
+            apelido: "Perez",
+            edad: 20
+        }
+
+        let {nombre,apellido,edad}=persona;
+        console.log(nombre,apellido,edad);
+    </script>
+</body>
+</html>

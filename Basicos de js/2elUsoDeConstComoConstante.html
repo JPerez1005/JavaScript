@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos JavaScript</title>
+</head>
+<body>
+    <h1>Fundamentos JavaScript</h1>
+    <script>
+        //Esta es una constante
+        const pi = 3.1416;
+        console.log(pi);
+
+        //este es un objeto
+        let persona = {
+            nombre:"Julian",
+            edad: "20",
+            zapatos: ["blanco","negro"]
+        }
+        //Este es un arreglo
+        let colores = [
+            "blanco","negro","azul"
+        ]
+
+        //AHORA INSERTAREMOS MAS DATOS EN EL OBJETO Y EL ARREGLO
+        //insertar en objeto
+        persona.correo = "pb@ouklook.com";
+        colores.push("gris");
+
+        //mostramos en consola
+        console.log(persona);
+        console.log(colores);
+
+        /*Como pudimos ver el uso de la constante cambia solo en los valores primitivos,
+        es decir si definimos un valor en const este no va a cambiar lo largo de programa,
+        a diferencia del let por eso mismo se llaman variables y constantes,
+        los valores compuestos en los que hacen parte los objetos y los arreglos se pueden
+        definir tanto con let como con const van a hacer lo mismo*/
+    </script>
+</body>
+</html>

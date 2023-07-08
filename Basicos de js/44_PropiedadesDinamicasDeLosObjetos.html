@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propiedades dinamicas de los Objetos</title>
+</head>
+<body>
+    <script>
+        const objUsuarios={
+            //Generamos un valor aleatorio en cada id
+            [`id_${Math.round(Math.random()*100+5)}`]:`Valor Aleatorio`
+        };
+        console.log(objUsuarios);
+        //por alguna razon el objetoUsuarios se conecta con el array usuarios
+        const usuarios=[`Julian`,`Irma`,`Daniela`,`Soffie`];
+        //asignamos un foreach a la variable usuarios
+//Se crea la propiedad index que es el crea dinamicamente id de los usuarios
+        usuarios.forEach((usuario, index)=>objUsuarios
+        [`id_${index}`/*Creamos el id dinamicamente*/]=usuario);
+        console.log(objUsuarios);
+    </script>
+</body>
+</html>

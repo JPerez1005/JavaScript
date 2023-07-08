@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getters And Setters</title>
+</head>
+<body>
+    <center>
+        <h1>Getters and Setters</h1>
+        <p>Los Setters y Getters son métodos especiales que nos permiten</br>
+            establecer y obtener los valores de atributos de nuestra clase</p>
+    </center>
+    <script>
+        //Creamos la clase constructora
+        class Animal{
+            constructor(nombre,genero){
+                this.nombre=nombre;
+                this.genero=genero;
+            }
+        }
+
+        //La clase hija
+        class Perro extends Animal{
+            constructor(nombre,genero,tamanio){
+                super(nombre,genero);
+                this.tamanio=tamanio;
+                this.raza=null;
+            }
+            /**/
+            get getRaza(){
+                return this.raza;
+            }
+
+            set setRaza(raza){
+                this.raza=raza;
+            }
+            //Aunque son metodos los usaremos como si fueran atributos
+        }
+        //primero creamos el objeto de clase animal o perro, con los parametros
+        //Establecidos en el constructor
+        let scooby=new Perro("Scooby","Macho","Mediano");
+        //ahora los get and set se usan de la siguiente manera
+        //definiendo el metodo como un atributo enviando información al get
+        scooby.setRaza="Gran Danés";
+        //despues de enviar la información la recibimos con get
+        let inffo=scooby.getRaza;
+        console.log(inffo);
+        
+    </script>
+</body>
+</html>

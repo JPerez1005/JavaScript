@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operador Cotocircuito</title>
+</head>
+<body>
+    <center>
+        <h1>Operador Cortocircuito</h1>
+        <p>Cortocircuito OR: cuando el valor de la izquierda en la expresión<br>
+        siempre pueda validar a true, es el valor que se cargará por defecto</p>
+        <br>
+        <p>Cortocircuito AND: cuando el valor de la izquierda en la expresión<br>
+        siempre pueda validar a false, es el valor que se cargará por defecto</p>
+    </center>
+    <script>
+        function saludar(nombre = `Desconocido`){
+            console.log(`Hola ${nombre}`);
+        }
+
+        saludar("Julian");
+        saludar();
+
+        function saludar2(nombre){
+            nombre=nombre || "Desconocido"//cuando el izq sea true
+            //se ignora el lado derecho
+            console.log(`Hola ${nombre}`);
+        }
+        saludar2();
+
+        //tipos de valores que validan la izq
+        console.log("Cadena"||"Valor de la derecha");
+        console.log(19||"Valor de la derecha");
+        console.log(true||"Valor de la derecha");
+        console.log([]||"Valor de la derecha");
+        console.log({}||"Valor de la derecha");
+        //tipos de valores que validan la derecha
+        console.log(false, null, undefined, "", 0||"Valor de la derecha");
+
+        //And es todo lo contrario a or es decir los falsos de or son los positivos de and
+    </script>
+</body>
+</html>

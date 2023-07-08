@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de Errores</title>
+</head>
+<body>
+    <center>
+        <h1>Trycatch</h1>
+        <p>Se usa resumidamente para corregir o advertir erroes</p>
+        <p>para el usuario y para el programador.</p>
+    </center>
+    <script>
+        try {
+            //Aqui se coloca el codigo
+            console.log(`Si yo cometo un error, me funa el catch`);
+        } catch (error) {
+            console.log(`Algo paso, adivine que fue`);
+        }finally{
+            console.log(`yo voy a funcionar como sea, así que tranquil@`);
+        }
+
+        try {
+            let numero=10;
+            if (isNaN(numero)) {
+                throw new Error(`El caracter introducido no es numero`);
+            }
+            console.log(numero*numero);
+        } catch (error) {
+            console.log(`Se produjo el siguiente error:${error}`);
+        }
+
+        try {
+            let numero=`y`;
+            if (isNaN(numero)) {
+                throw new Error(`El caracter introducido no es numero`);
+            }
+            console.log(numero*numero);
+        } catch (error) {
+            console.log(`Se produjo el siguiente error:${error}`);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{
+  "mugiwara": [
+    {
+      "id": 1,
+      "nombre": "Monkey D. Luffy",
+      "genero": "Hombre"
+    },
+    {
+      "id": 2,
+      "nombre": "Zorro",
+      "genero": "Hombre"
+    },
+    {
+      "id": 3,
+      "nombre": "Ussop",
+      "genero": "Hombre"
+    },
+    {
+      "id": 4,
+      "nombre": "Nami",
+      "genero": "Mujer"
+    },
+    {
+      "id": 5,
+      "nombre": "Tony tony Chopper",
+      "genero": "Hombre"
+    },
+    {
+      "id": 6,
+      "nombre": "Nico Robin",
+      "genero": "Mujer"
+    },
+    {
+      "nombre": "Brook",
+      "genero": "Hombre",
+      "id": 7
+    },
+    {
+      "nombre": "Franky",
+      "genero": "Hombre",
+      "id": 8
+    },
+    {
+      "nombre": "Sanji",
+      "genero": "Hombre",
+      "id": 9
+    },
+    {
+      "nombre": "Jimbei",
+      "genero": "Hombre",
+      "id": 10
+    }
+  ],
+  "yonkous": [
+    {
+      "id": 2,
+      "nombre": "Shanks",
+      "tripulacion": "Piratas del pelirojo"
+    },
+    {
+      "id": 3,
+      "nombre": "kaidou",
+      "tripulacion": "Piratas de las Bestias"
+    },
+    {
+      "id": 4,
+      "nombre": "Luffy",
+      "tripulacion": "Piratas del sombrero de Paja"
+    }
+  ]
+}

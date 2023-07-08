@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones anonimas autoejecutables</title>
+</head>
+<body>
+    <script>
+        //Función Anonima Autoejecutable
+        //versión tradicional
+        (function(c,w,d){
+            c.log(`mi primera función autoejecutable`);
+            c.log(w);
+            c.log(d);
+        })(console,window,document);
+
+        //versión unaria
+        +function(){
+
+        }();
+
+        //versión facebook
+        !function(){}();
+    </script>
+</body>
+</html>

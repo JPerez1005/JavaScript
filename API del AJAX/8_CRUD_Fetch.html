@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD API REST AJAX</title>
+</head>
+<body>
+    <h1>CRUD API REST AJAX</h1>
+    <section class="crud">
+        <article>
+            <h2 class="crud_title">Agregar Tripulantes</h2><!-- querySelector -->
+            <form class="crud-form"><!-- querySelector -->
+                <input type="text" name="nombre" placeholder="Nombre del Tripulante" required>
+                <br>
+                <input type="text" name="Genero" placeholder="Genero del Tripulante" required>
+                <br><br>
+                <input type="submit" value="Enviar">
+                <input type="hidden" name="id">
+            </form>
+        </article>
+        <article>
+            <h2>Ver Tripulantes</h2>
+            <table class="crud-table"><!-- querySelector -->
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Genero</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </article>
+    </section>
+    <template id="crud-template"><!-- getElementById -->
+        <tr>
+            <td class="name"></td>
+            <td class="gender"></td>
+            <td><button class="edit">Editar</button><button class="delete">Eliminar</button></td>
+        </tr>
+    </template>
+    <script>
+        const d=document;
+        const $table=d.querySelector(".crud-table"),
+        $form=d.querySelector(".crud-form"),
+        $title=d.querySelector(".crud-title"),
+        $template=d.getElementById("crud-template").content,
+        $fragment=d.createDocumentFragment();
+
+        const getAll= async()=>{//Aquí tenemos hecho el get
+            try {
+                let res=await fetch("http://localhost:5000/mugiwara"),
+                json=await res.json();
+
+            if(!res.ok)/*si la respuesta ok=200 era fasa entonces...*/
+            throw{status: res.status, statusText: res.statusText};/**throw es un objeto que redirecciona el flujo al catch */
+
+            console.log(json);//hasta aquí podremos mandar los datos a la consola
+            /***********Ahora nos concentraremos en mandar los datos en el document*************/
+            json.forEach(el => {
+                $template.querySelector(".name").textContent=el.nombre;
+                $template.querySelector(".gender").textContent=el.genero;
+                $template.querySelector(".edit").dataset.id=el.id;//mandamos la info a los botones de edit
+                $template.querySelector(".edit").dataset.name=el.nombre;//mandamos la info a los botones de edit
+                $template.querySelector(".edit").dataset.gender=el.genero;//mandamos la info a los botones de edit
+                $template.querySelector(".delete").dataset.id=el.id;//mandamos la info a los botones de eliminar
+
+                let $clone=d.importNode($template, true);/*true clona los nodos con los datos*/
+                $fragment.appendChild($clone);
+            });
+
+            $table.querySelector("tbody").appendChild($fragment);//mandamos todo a la tabla
+
+            } catch (err) {
+                let message=err.statusText||"Ocurrió un Error";
+                $table.insertAdjacentHTML("afterend", `<p><b>Error ${err.status}: ${message}</b></p>`);
+            }
+        }
+
+        d.addEventListener("DOMContentLoaded", getAll);
+
+        d.addEventListener("submit", async e=>{
+            if (e.target===$form) {
+                e.preventDefault();
+                if (!e.target.id.value) {
+                //Create - POST
+                try {
+                let options={
+                    method:"POST",
+                    Headers:{
+                        "Content-type": "application/json; charset=utf-8"
+                    },
+                    body: JSON.stringify({
+                        nombre: e.target.nombre.value,
+                        genero: e.target.Genero.value
+                    })
+                },
+                res=await fetch("http://localhost:5000/mugiwara", options),
+                json=await res.json();
+
+                if(!res.ok)/*si la respuesta ok=200 era fasa entonces...*/
+                throw{status: res.status, statusText: res.statusText};/**throw es un objeto que redirecciona el flujo al catch */
+                } catch (err) {
+                    let message=err.statusText||"Ocurrió un Error";
+                $form.insertAdjacentHTML("afterend", `<p><b>Error ${err.status}: ${message}</b></p>`);
+                }
+                } else {
+                
+                }
+            }
+            
+            
+        });
+    </script>
+</body>
+</html>

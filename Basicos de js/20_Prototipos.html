@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipos</title>
+</head>
+<body>
+    <center>
+        <h1>Prototipos</h1>
+        <p>Los prototipos y el uso de los prototipos tienen que ver mucho</p>
+        <p>con los objetos, todo en javaScript es un objeto.</p>
+        <br>
+        <h2>Lista de lo que conforma un objeto prototipo </h2>
+        <li>clases</li>
+        <li>objetos</li>
+        <li>atributos</li>
+        <li>metodos</li>
+        <br>
+        <p>De los prototipos se pueden hacer herencias</p>
+        <p>Yo podria hacer un prototipo principal pero... si quiero hacer</p>
+        <p>otro objeto parecido entonces es mejor usar herencias.</p>
+    </center>
+    <script>
+        /*EJEMPLO DE UN OBJETO*/
+        const Animals={
+            nombre: "Snoopy",
+            //funcion asignada o declarada
+            //por esta razón nos podremos saltar la palabra
+            //reservada function
+            sonar(){
+                console.log(`${nombre} hace ruido!!!`);
+            }
+        }
+        //Función Constructora
+        function Animal(nombre, genero){
+            //Atributos
+            this.nombre=nombre;
+            this.genero=genero;
+
+            //metodos
+            //Aqui los metodos tienen que ser de manera tradiccional
+            //Es decir aquí no podremos usar arrow function
+            this.sonar=function(){
+                console.log(`Hago sonidos`);
+            }
+        }
+        //Es mejor sacar los metodos fuera de la función constructura y así 
+        //no se gastan datos en memoria, conectamos los metodos de la siguiente
+        //Manera:
+        Animal.prototype.sonar2=function(){//el arrow function causa errores incluso fuera de
+            //la función constructora, es mejor usar el metodo tradicional aquí
+            console.log(`Hola me llamo ${this.nombre}`);
+        }
+
+        let snoopy=new Animal(`Snoopy`,`Macho`),lolaBunny=new Animal(`lolaBunny`,`Hembra`);
+
+        console.log(snoopy, lolaBunny);
+
+        snoopy.sonar();
+        lolaBunny.sonar();
+        snoopy.sonar2();
+        lolaBunny.sonar2();
+    </script>
+</body>
+</html>

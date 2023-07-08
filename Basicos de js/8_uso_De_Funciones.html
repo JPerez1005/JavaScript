@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones</title>
+</head>
+<body>
+    <h1>Definición</h1>
+    <p>Una función es un bloque de código, autocontenido, que se puede definir</p>
+    <p>una vez y ejecutar en cualquier momento.</p>
+    <br>
+    <p>Opcionalmente, una función puede aceptar parámetros y devolver un valor.</p>
+    <br>
+    <p>Las funciones en JavaScript son objetos, un tipo especial de objetos</p>
+    <br>
+    <h2>Funcion declarada y expresada</h2>
+    <br>
+    <p>la función declarada es aquella que apenas al ser creadas se les da una Definición</p>
+    <p>la expresadas son aquellas que estan en una variable y no estan definidas</p>
+    <p>las expresadas no se les hace un hoisting es decir no se pueden invocar antes de</p>
+    <p>haber sido creadas a diferencia de las funciones declaradas que si pueden.</p>
+    <br>
+    <p>leer lineas 75 y 81 para entender</p>
+    <script>
+
+        //Ejemplo
+        function enLaBanca(){
+            console.log("James"),
+            console.log("Roman"),
+            console.log("Maikol")
+        }
+        //si ejecutamos en el navegador, la consola no nos mostrara los datos a menos 
+        //de que llamemos a la funcion así;
+        enLaBanca();
+        //y la podemos invocar muchas veces
+        // enLaBanca();
+        // enLaBanca();
+        // enLaBanca();
+
+        //ejemplo2
+        function funcionDevuelveValor(){
+            console.log("uno");
+            return 19;//cuando la consola retorna esta linea, dejará de leer las otras lineas
+            console.log("dos");
+            console.log("tres");
+            return "La función ah retornado una cadena de texto"
+        }
+
+        //podriamos invocar a la función de modo normal, pero no nos mostraria las lineas de return
+        //así que para mostrar las lineas de return usamos una varible
+
+        let valorDeFunción=funcionDevuelveValor();
+        console.log(valorDeFunción);//de esta manera mostramos la función en la consola
+
+        //ejemplo 3
+        function saludar(nombre, edad){
+            console.log(`Hola mi nombre es ${nombre} y tengo ${edad} años.`);
+        }
+
+        saludar("Julian", 20);/*Aqui precisamente definimos los valores de la función creada anteriormente*/
+        saludar();//veremos que nos retorna sin haber asignado ningun valor
+        saludar(null, null);//asignamos null intencionalmente
+
+        function saludar2(nombre="Julian", profesión="Ingeniero"){//podemos dejar valores por defecto
+            console.log(`Hola mi nombre es ${nombre} y soy un ${profesión}`);
+        }//dejar valores por defecto se hace para que no nos salgan valores indefinidos en consola
+
+        saludar2("Julian","Profesor");
+        saludar2();
+
+        //ejemplo4 función declarada vs expresada
+
+        function funcionDeclarada(){
+            console.log(`Yo soy una función declaradad y me pueden
+            Invocar en cualquier parte del codigo`);
+        }
+
+        //función anónima
+        const funcionExpresada = function(){
+            console.log(`Yo soy una función expresada y no puedes
+            invocarme en cualquier parte debido a que o no tengo
+            valores definidos, precisamente por eso no soy una función
+            declarada.`)
+        }
+    </script>
+</body>
+</html>

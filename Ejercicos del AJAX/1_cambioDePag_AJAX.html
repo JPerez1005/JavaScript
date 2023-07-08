@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructura del HTML</title>
+    <style>
+        html{
+            box-sizing: border-box;
+            font-family: sans-serif;
+            font-size: 16px;
+        }
+
+        *,
+        *:before,
+        *:after{
+            box-sizing: inherit;
+        }
+
+        body{
+            margin:0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        img{
+            max-width: 100%;
+            height: auto;
+        }
+
+        main{
+            flex-grow: 1;
+        }
+
+        .container{
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 992px;
+        }
+
+        .header{
+            padding: .5rem;
+            background-color: hsl(0, 0%, 90%);
+        }
+
+        .header-content{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img{
+            width: 3rem;
+            height: auto;
+        }
+
+        .menu{
+            display: flex;
+            justify-content: space-between;
+            font-size: 115%;
+        }
+
+        .menu a{
+            color: black;
+            padding: 0 1vw;
+            transition: all .3s ease-in-out;
+            text-decoration: none;
+        }
+
+        .menu a:hover{
+            opacity: .75;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <section class="header-content container">
+            <article class="logo">
+                <img src="ASSETS/My project-1.png"
+                 alt="LOGO">
+            </article>
+            <nav class="menu">
+                <a href="1y2AJAX/home.html">Home</a>
+                <a href="1y2AJAX/acerca.html">Acerca</a>
+                <a href="1y2AJAX/servicios.html">Servicios</a>
+                <a href="1y2AJAX/contacto.html">Contactos</a>
+            </nav>
+        </section>
+    </header>
+    <main class="container"></main>
+    <footer class="footer container">
+        <p>
+            <small>
+                Sitio de Foxy
+            </small>
+        </p>
+    </footer>
+    <script>
+        const d=document;
+        $main=d.querySelector("main");
+
+        const getHTML=(options)=>{
+            let {url, succes, error}=options;
+            //a continuación instanciamos
+            const xhr=new XMLHttpRequest();
+            //asignamos un listener
+            xhr.addEventListener("readystatechange",/*ahora la callback*/e=>{
+                if(xhr.readyState!==4)return;
+
+                if (xhr.status>=200 && xhr.status<300) {
+                    let html=xhr.responseText;//contenido textual, no se hace parseo
+                    succes(html);
+                }else{
+                    let message=xhr.statusText || "ocurrió un error";
+                    error(`Error ${xhr.status}: ${message}`);
+                }
+            });
+
+            xhr.open("GET", url);//activamos el listener del xhr
+            xhr.setRequestHeader("Content-type", "text/html; charset=utf-8");
+            xhr.send();
+        }
+
+        // DOMContentLoaded es la carga del documento
+        d.addEventListener("DOMContentLoaded", e=>{
+            getHTML({
+                url: "1y2AJAX/home.html",
+                succes:(html)=>$main.innerHTML=html,
+                error: (err)=>$main.innerHTML=`<h1>${err}</h1>`
+            });
+        });
+
+        //Ahora asignamos un evento a los botones con ref a
+        d.addEventListener("click", e=>{
+            if(e.target.matches(".menu a")){
+                e.preventDefault();
+                getHTML({
+                url: e.target.href,
+                succes:(html)=>$main.innerHTML=html,
+                error: (err)=>$main.innerHTML=`<h1>${err}</h1>`
+            });
+            }
+        });
+    </script>
+</body>
+</html>

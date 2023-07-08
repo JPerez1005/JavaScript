@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejadores de Eventos</title>
+</head>
+<body>
+    <h1>Manejadores de Eventos</h1>
+    <button onclick="holaMundo()">Evento con Atributo HTML</button>
+    <br><br>
+    <button id="evento-semantico">Evento con manejador Semántico</button>
+    <br><br>
+    <button id="evento-multiple">Evento con manejador Múltiple</button>
+    
+    <script>
+        function holaMundo(){
+            alert("Hello World");
+            console.log(event);
+        }
+
+        const $eventoSemantico=document.getElementById("evento-semantico"),
+        $eventoMultiple=document.getElementById("evento-multiple");//varias funciones en un mismo evento
+
+        $eventoSemantico.onclick=holaMundo;
+        $eventoSemantico.onclick=function(e){
+            alert("Hola Mundo con manejador de eventos semánticos")
+            console.log(e);
+        }
+
+        $eventoMultiple.addEventListener("click"/*evento*/,holaMundo/*función*/);//recordar que si coloco parentesis
+        //tendré ejecución inmediata
+
+        $eventoMultiple.addEventListener("click"/*recordar q esto es un tipo de evento*/,(e)=>{
+            alert("segundo alert del evento multiple");
+            console.log(e);//recordar que e y event aquí es lo mismo
+            console.log(e.type);//muestra el tipo de evento
+            console.log(e.target);//muestra las etiquetas html con la que se conecta el evento
+            let texto="Hola, genteee me imagino que ya con este momento se sabe quien gano"+
+        "perdieron desde que yo entré a su salon, así que.... pido perdon :(";
+
+        const hablar=(texto)=>speechSynthesis.speak(new SpeechSynthesisUtterance(texto));
+        hablar(texto);
+        });
+        
+
+    </script>
+</body>
+</html>

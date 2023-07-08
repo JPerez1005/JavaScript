@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This</title>
+</head>
+<body>
+    <p>This hace referencia al objeto windows</p>
+    <script>
+        console.log(this);
+        //window y this son el mismo valor cuando se hace la instancia sin objetos
+        //este efecto ocurre por los bloques en los objetos
+        //podemos verlo de la forma de this window o esta ventana como referencia
+        console.log(window);
+        //ahora en una linea de codigo se demuestra que los valores son los mismos
+        console.log(this===window);
+
+        this.nombre=`Contexto Global`;//agregamos una variable a window
+        //podemos imprimir el window para confirmar
+        //en este caso yo lo imprimiré directamente
+        console.log(this.nombre);
+
+        //Aqui no tendremos bloqueo de objetos debido a que es una función
+        //que no se le creo una variable nombre dentro de esta, entonces recoge
+        // la variable global Recordar que esta es una función Expresada
+        function imprimir(){
+            console.log(this.nombre);
+        }
+
+        imprimir();//aquí podremos confirmarlo
+
+        //aqui si hay un bloque y ahora this pasa a referenciar el objeto donde le crean la instancia
+        const obj={
+            nombre:"Contexto Objeto",
+            //lo mismo pasa con las funciones no importa si lo instancian con el mismo nombre
+            //habrá un bloqueo
+            imprimir: function(){
+                console.log(this.nombre);
+            }
+        }
+
+        //podremos ver que la ventana window no afecta nuestro objeto creado
+        obj.imprimir();//aqui instanciamos la funcion imprimir del objeto obj
+
+
+        const obj2={
+            nombre:"Constexto Objeto2",
+            imprimir//Aquí hacemos referencia a la función que está en la linea 27
+            //se coloca solo imprimir por que instaciamos imprimir como un objeto literal
+            //se puede hacer tambien= imprimir: imprimir;
+        }
+
+        //creeremos que imprimiremos el valor que llamamos en la linea 27 pero
+        //en realidad estamos imprimiendo el valor del obj2, esto ocurre por el bloqueo
+        obj2.imprimir();
+
+        const obj3={
+            nombre:"Contexto Objeto 3",
+            imprimir:()=>{
+                console.log(this.nombre);
+            }
+        }
+
+        //creeremos que pasará lo mismo que lo que paso con el obj2, pero no es así
+        //esta vez si imprimira el valor de la linea 20, asi como lo hace la funcion de la 27
+        //,debido a que con las arrow function rompen los bloqueos y hay que tener cuidado con ello
+        obj3.imprimir();
+
+        //La funcion constructora tambien tiene bloqueo al igual que los objetos y funciones normales
+        function Persona(nombre){
+            this.nombre=nombre;
+            //en esta function constructor tambien existe un bloqueo
+            return console.log(this.nombre);
+            //debido a que es una función anonima nos devolvera el mismo valor 
+            //que nos retorna la función de la linea 27, esto pasa por que dentro de 
+            // esta funcion no se crea una varible con propiedad de nombre
+            return function(){
+                console.log(this.nombre);
+            }
+            // a diferencia de las funciones declarada las expresadas si validan el valor
+            // de esta funcion constructor, yo me imagino que es por que no tiene corchetes
+            // las arrow function de una linea
+            return()=>console.log(this.nombre);
+        }
+
+        //aquí confirmamos el bloqueo en la función constructora
+        let juliand=new Persona(`Julian`);
+        Persona(juliand);
+        Persona("David");
+        // en la siguiente linea hubo un problema con la instancia de la funcion
+        // dentro de la funcion constructor
+        // juliand();
+    </script>
+</body>
+</html>

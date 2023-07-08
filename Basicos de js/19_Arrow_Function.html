@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Function</title>
+</head>
+<body>
+    <center>
+        <h1>Arrow Function</h1>
+        <p>Las Arrow function provienen de las funciones no declaradas</p>
+        <p>es decir de las funciones expresadas o anonimas, con la diferencia</p>
+        <p>de que cambiamos la palabra reservada function por una flecha (=>)</p>
+        <p>Tambien podemos omitir las llaves que normalmente se usan en funciones</p>
+    </center>
+    <script>
+        //función expresada normal
+        let saludar=function(){
+            console.log(`Hola`);
+        }
+        //omitimos function
+        let saludo2=()=>{
+            console.log(` Que mas?`);
+        }
+        //Omitimos llaves
+        let saludo3=()=>console.log(` Como estas?`);
+
+        //Para saludar a una persona pedimos el nombre
+        let saludo4=(nombre)=>console.log(`Hola ${nombre}, bien Gracias Por preguntar`);
+
+        //también se pueden quitar los parentesis cuando hay parametros
+        let saludo5=nombre=>console.log(`y tú como estás ${nombre}`);
+        saludar();
+        saludo2();
+        saludo3();
+        
+        saludo4(`Julián`);
+        saludo5(`Julián`);
+
+        //función numerica expresiva o anonima
+        let suma = function(a,b){
+            return a+b;
+        }
+        //aquí no podremos omitir los parentesis por que hay mas de un parametro
+        let suma2=(a,b)=>a+b;
+
+        console.log(suma2(2,2));
+
+        //cuando la función tiene mas de una linea de codigo no podemos omitir las llaves
+        let variasLineas=()=>{
+            console.log(`uno`);
+            console.log(`dos`);
+            console.log(`tres`);
+        }
+
+        //así se usan los foreach con una arrow functión
+        let numeros=[1,2,3,4,5,6];
+        numeros.forEach((el, index)=>console.log(`El elemento ${el} está en la posición ${index}`)
+        );
+    </script>
+</body>
+</html>
